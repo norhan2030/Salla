@@ -7,150 +7,36 @@
           <p> تسوق احدخث المنتجات المميزةالمضافه جديد </p>
         </div>
         <div class="col-6 all_p">
-          <a href="#">
-            <i class="fa fa-chevron-left"></i>عرض الكل
-          </a>
+                <router-link  :to="{name:'shoppingCard' }"  class="btn active"> <i class="fa fa-chevron-left"></i>عرض الكل</router-link> 
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-3 col-md-6 col-sm-12 mt-5">
+      <div class="col-lg-3 col-md-6 col-sm-12 mt-5" 
+        v-for="product in displayItems"
+        :key="product.id"
+        >
         <div class="Product">
-          <div class="img">
-            <img src="../../assets/imags/bunner1.png" alt="">
-            <span class="diccount text-white">  الخصم 25% </span>
-            <span class="new text-white" v-if="neworder"> جديد </span>
-          </div>
+          <router-link :to="{ name: 'ProductDetails', params: { id: product.id,catID: product.cat.id } }" class="img d-block">
+            <img 
+            v-bind:src="'./images/product/' + product.img +'.png' "  alt="">
+            <span class="diccount text-white" v-if="offered.some(item => item.id === product.id)">  الخصم {{product.offer}}% </span>
+            <span class="new text-white" v-else-if="popular.some(item => item.id === product.id)"> جديد </span>
+            <span class=" text-white" v-else>  </span>
+          </router-link >
           <div class="details">
-            <div class="type">  ساعات </div>
-            <div class="title">  ساعة زكية جديدة من سلسلة B </div>
-            <div class="desc">   سوار رياضى اسود - عادى </div>
+            <div class="type">  {{product.cat.name}} </div>
+            <router-link :to="{ name: 'ProductDetails', params: { id: product.id,catID: product.cat.id } }" class="title d-block" > 
+              {{ product.name }} 
+            </router-link>
+            <div class="desc">   {{ product.decs }}</div>
             <div class="price"> 
               <span class="currunt">
-                250.00 رس</span>
-                <span class="last">
+                {{ product.price }}.00
+                رس</span>
+                <!-- <span class="last">
                   350.00 رس
-                </span>
-            </div>
-          </div>
-          <div class="order">
-            <a href="#"> 
-              اضف الى السلة
-            </a>
-            <a href="#" class="fav"> 
-              <i class="fa fa-heart"></i>
-            </a>
-          </div>
-        </div>
-        
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-12 mt-5">
-        <div class="Product">
-          <div class="img">
-            <img src="../../assets/imags/bunner1.png" alt="">
-            <span class="diccount text-white">  الخصم 25% </span>
-            <span class="new text-white" v-if="neworder"> جديد </span>
-          </div>
-          <div class="details">
-            <div class="type">  ساعات </div>
-            <div class="title">  ساعة زكية جديدة من سلسلة B </div>
-            <div class="desc">   سوار رياضى اسود - عادى </div>
-            <div class="price"> 
-              <span class="currunt">
-                250.00 رس</span>
-                <span class="last">
-                  350.00 رس
-                </span>
-            </div>
-          </div>
-          <div class="order">
-            <a href="#"> 
-              اضف الى السلة
-            </a>
-            <a href="#" class="fav"> 
-              <i class="fa fa-heart"></i>
-            </a>
-          </div>
-        </div>
-        
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-12 mt-5">
-        <div class="Product">
-          <div class="img">
-            <img src="../../assets/imags/bunner1.png" alt="">
-            <span class="diccount text-white">  الخصم 25% </span>
-            <span class="new text-white" v-if="neworder"> جديد </span>
-          </div>
-          <div class="details">
-            <div class="type">  ساعات </div>
-            <div class="title">  ساعة زكية جديدة من سلسلة B </div>
-            <div class="desc">   سوار رياضى اسود - عادى </div>
-            <div class="price"> 
-              <span class="currunt">
-                250.00 رس</span>
-                <span class="last">
-                  350.00 رس
-                </span>
-            </div>
-          </div>
-          <div class="order">
-            <a href="#"> 
-              اضف الى السلة
-            </a>
-            <a href="#" class="fav"> 
-              <i class="fa fa-heart"></i>
-            </a>
-          </div>
-        </div>
-        
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-12 mt-5">
-        <div class="Product">
-          <div class="img">
-            <img src="../../assets/imags/bunner1.png" alt="">
-            <span class="diccount text-white">  الخصم 25% </span>
-            <span class="new text-white" v-if="neworder"> جديد </span>
-          </div>
-          <div class="details">
-            <div class="type">  ساعات </div>
-            <div class="title">  ساعة زكية جديدة من سلسلة B </div>
-            <div class="desc">   سوار رياضى اسود - عادى </div>
-            <div class="price"> 
-              <span class="currunt">
-                250.00 رس</span>
-                <span class="last">
-                  350.00 رس
-                </span>
-            </div>
-          </div>
-          <div class="order">
-            <a href="#"> 
-              اضف الى السلة
-            </a>
-            <a href="#" class="fav"> 
-              <i class="fa fa-heart"></i>
-            </a>
-          </div>
-        </div>
-        
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-12 mt-3">
-        <div class="Product">
-          <div class="img">
-            <img src="../../assets/imags/bunner1.png" alt="">
-            <span class="diccount text-white">  الخصم 25% </span>
-            <span class="new text-white" v-if="neworder"> جديد </span>
-          </div>
-          <div class="details">
-            <div class="type">  ساعات </div>
-            <div class="title">  ساعة زكية جديدة من سلسلة B </div>
-            <div class="desc">   سوار رياضى اسود - عادى </div>
-            <div class="price"> 
-              <span class="currunt">
-                250.00 رس</span>
-                <span class="last">
-                  350.00 رس
-                </span>
+                </span> -->
             </div>
           </div>
           <div class="order">
@@ -173,10 +59,58 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
       neworder:false,
+      // img:2,
+      displayItems: [],
+      popular:[],
+      offered:[]
+    };
+  },
+  async mounted() {
+    
+
+    await axios
+      .get(
+        "Products/" 
+      )
+      .then((res) => {
+        this.displayItems = res.data.data;
+        this.displayItems=this.displayItems.slice(0,8)
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(error.response.data.errors);
+      });
+      await axios
+      .get(
+        "newest/" 
+      )
+      .then((res) => {
+        this.popular = res.data.data;
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(error.response.data.errors);
+      });
+      await axios
+      .get(
+        "offered/" 
+      )
+      .then((res) => {
+        this.offered = res.data.data;
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(error.response.data.errors);
+      });
+  },
+  methods: {
+    shownew(){
+      this.neworder=!this.neworder
     }
   },
 }
@@ -196,10 +130,10 @@ export default {
   a{
     display: block;
     text-decoration: none;
-    color: var(--primary);
+    color: var(--primary) !important;
     font-size: 18px;
     padding: 7px 15px;
-    border: 1px solid var(--primary);
+    border: 1px solid var(--primary) !important;
     width: fit-content;    
     // margin: 0 60% 0 0;
     border-radius: 5px;
@@ -214,9 +148,9 @@ export default {
     position: relative;
     img{
       max-width: 100%;
-      height: 228px;
+      height: 200px;
     }
-    span{
+    .diccount{
       position: absolute;
       top: 10px;
       left:20px;
@@ -225,7 +159,7 @@ export default {
       border-radius: 3px;      
       background-color: var(--Danger-Color---Danger-Primary);
     }
-    span.new{
+    .new{
       color: var(---Dark-Color---White, #FFF);
       font-weight: 400;
       line-height: normal;
@@ -238,12 +172,20 @@ export default {
     padding: 8px;
     .type{
       color: var(--primary);
-      font-size: 18px;
+      font-size: 14px;
+    }
+    .desc{
+      // height: 70px;
+      height: 40px;
+      max-height: 40px;
+      font-size: 14px;
+      overflow: hidden;
     }
     .title{
       color: black;
       font-weight: bold;
       font-size: 18px;
+      text-decoration: none;
     }
     .price{
       margin-top: 10px;

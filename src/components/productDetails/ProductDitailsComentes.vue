@@ -1,34 +1,58 @@
 <template>
     <div class="container">
         <div class="row row1">
-            <p>الرئسية/ كل المنتجات/ <span>تفاصيل المنتج</span></p>
+            <p>
+                <router-link  :to="{name:'home' }" >الرئسية</router-link> / 
+                <router-link  :to="{name:'shoppingCard'}" >كل المنتجات</router-link> /
+                <span> تفاصيل المنتج  </span></p>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="row">
+                    <!-- Item -->
                     <div class="col-md-4 imges">
-                    <div class="row"><img src="../../assets/imags/mob2.png" alt=""></div>
-                    <div class="row"><img src="../../assets/imags/mob3.png" alt=""></div>
-                    <div class="row"><img src="../../assets/imags/mob4.png" alt=""></div>
-                    <div class="row"><img src="../../assets/imags/mob5.png" alt=""></div>
-                    <div class="row"><img src="../../assets/imags/mob6.png" alt=""></div>
+                    <div class="row">    
+                        <img 
+                            v-bind:src="'../../images/product/' + Item.img +'.png' " class="blur"  alt="">
+                    </div>
+                    <div class="row">    
+                        <img 
+                            v-bind:src="'../../images/product/' + Item.img +'.png' " class="blur"  alt="">
+                    </div>
+                    <div class="row">    
+                        <img 
+                            v-bind:src="'../../images/product/' + Item.img +'.png' "  alt="">
+                    </div>
+                    <div class="row">    
+                        <img 
+                            v-bind:src="'../../images/product/' + Item.img +'.png' " class="blur"  alt="">
+                    </div>
+                    <div class="row">    
+                        <img 
+                            v-bind:src="'../../images/product/' + Item.img +'.png' " class="blur"  alt="">
+                    </div>
                     </div>
                     <div class="col-md-8 image">
                         <div class="fave"><i class="fa-brands fa-gratipay"></i></div>
-                        <div class="row bigimg"><img src="../../assets/imags/mob1.png" alt=""></div>
+                        <div class="row bigimg">    
+                            <img  class="imageeee"
+                            v-bind:src="'../../images/product/' + Item.img +'.png' "  alt="">
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="row row2">
-                    <img src="../../assets/imags/sumsong.png" alt="">
+                        
+                    <img 
+                          v-bind:src="'../../images/product/' + Item.img +'.png' "  alt="">
                 </div>
                 <div class="row row3">
-                    <p>موبايل آبل آيفون بشريحتين و 64 جيجا بالإضافة الى كاميرتين ذات جودة عالية</p>
+                    <p>{{Item.name}}</p>
                 </div>
                 <div class="row row4">
                     <p>
-                    <i class="fa-regular fa-calendar-check"></i> المتبقي <span> 16</span> وحدة  <i class="fa-solid fa-fire me-3"></i> تم شراء <span> 250 </span> مرة
+                    <i class="fa-regular fa-calendar-check"></i> المتبقي <span> {{this.remine}}</span> وحدة  <i class="fa-solid fa-fire me-3"></i> تم شراء <span> {{Item.soled}} </span> مرة
 
                     </p>
                 </div>
@@ -36,12 +60,10 @@
                     <div class="col-md-4 ratshar">
                         <label class="form-check-label ">
                             <div class="small-ratings">
-                                <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                <i class="fa fa-star rating-color gray" ></i>
-                                <span style="" class="rate me-1">(10) تقيمات</span>
+                                <i class="fa fa-star rating-color" style="color:orange;" v-for="star in Item.star" :key="star.id"></i>
+                                
+                                <i class="fa fa-star rating-color gray" v-for="star in stargray" :key="star.id"></i>
+                                <span style="" class="rate me-1">({{ItemsComments.length}}) تقيمات</span>
                             </div>
                             
                         </label>
@@ -57,8 +79,9 @@
                   
 
                 </div>
+                
                 <div class="row row5">
-                    <p>موبايل ابل ايفون 11 بشريحتين لاتصال وذاكرة داخلية 64 جيجا ويدعم تقنية شبكة الجيل الرابع ال تي اي مع تطبيق فيس تايم، بنفسجي، النسخة العالمية</p>
+                    <p>{{Item.decs}}</p>
                 </div>
                 <div class="row row6">
                     <p>عرض المزيد</p>
@@ -83,13 +106,15 @@
                      <i class="fa-solid fa-circle-plus accordion-button"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"></i>
                    </div>
                    <div class="row rowimge">
-                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                             <div class="row ppp">
                                 <p>صور المنتج</p>
                             </div>
                             <div class="row imagee">
                                 <div class="col-md-2 ">
-                                    <img src="../../assets/imags/image11.png" alt="">
+                                        
+                                    <img 
+                            v-bind:src="'../../images/product/' + Item.img +'.png' "  alt="">
                                     <p>عنوان الصورة</p>
                                 </div>
                                 <div class="col-md-2 ">
@@ -240,11 +265,11 @@
                 <div class="row amount">
                     <div class="col-md-8 collll">
                         <div class="roww">
-                            <label for="">حدد الكمية </label> <button><i class="fa-solid fa-plus"></i></button><span>1</span><button><i class="fa-solid fa-minus"></i></button>
+                            <label for="">حدد الكمية </label> <button @click="addOne"><i class="fa-solid fa-plus"></i></button><span>{{count}}</span><button @click="minusOne" ><i class="fa-solid fa-minus"></i></button>
                         </div>
                     </div>
                     <div class="col-md-4 price">
-                        <label for="">250.00 ر.س</label>
+                        <label for="">{{250*count}}.00 ر.س</label>
                     </div>
                 </div>
                 <div class="row row10">
@@ -294,10 +319,63 @@
     </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
-    setup() {
-        
+    props: ['id'],
+    data(){
+        return{
+           
+            show:true,
+            count:0,
+            grayStar:0,
+            Item:[],
+            stargray:0,
+            remine:0,
+            ItemsComments:[],
+        }
     },
+    methods : {
+    // numberRemine(){
+    //     if(this.Item.quantity>this.Item.soled){
+    //         this.remine=this.Item.quantity-this.Item.soled;
+    //     }else{
+    //         this.remine=Math.abs(this.Item.quantity-this.Item.soled);
+    //     }
+        
+    // },
+    grayStars(){
+        this.grayStar=5-this.Item.star
+        console.log(this.grayStar)
+    },
+    addOne() {
+      this.count=this.count+1;
+    },
+    minusOne() {
+      if(this.count>0){
+        this.count=this.count-1;
+      }
+    },
+     
+    
+    },
+   mounted() {
+        axios.get('Products/'+this.id).then((res) => {
+            this.Item = res.data.data;
+            this.stargray=5-this.Item.star;
+            this.remine=Math.abs(this.Item.quantity-this.Item.soled);
+        })
+        axios.get('Pcomments/'+this.id).then((res) => {
+            this.ItemsComments = res.data.data;
+        })
+        
+   },
+// setup(props) {
+//     axios.get("Products/"+props.id).then((res) => { 
+//             this.Item = res.data.data; 
+//             console.log(this.Item)
+//         })
+//   },
 }
 </script>
 <style scoped>
@@ -346,8 +424,17 @@ line-height: normal;
     margin-bottom: 30px;
     
 }
+.row1 p a{
+    text-decoration: none;
+    color: #666;
+}
+.row1 p a:hover{
+    text-decoration: none;
+    color: var(--primary);
+}
 .row2 img{
     width: 80px;
+    
 }
 .row1 span{
     color: var(--02---Dark-Color---Gray---400, #666);
@@ -521,11 +608,6 @@ line-height: 147%;
     width: 100%;
 
 }
-.bttnn{
-    /* padding: 0 0 0 0; */
-    /* margin-left: 10px !important; */
-  
-}
 .butttn{
     padding: 0;
  
@@ -571,9 +653,8 @@ color: var(--text-gray);
 
 
 }
-input[type=file]{
-    /* display: none; */
-
+.blur{
+    filter: blur(2px);
 }
 @media(max-width:991px) {
     .amount .col-md-8{
@@ -650,6 +731,9 @@ input[type=file]{
     }
     .bigimg{
         position: relative;
+    }
+    .imageeee{
+        max-height:  50px !important;
     }
     .imagee .col-md-2{
         width: 14%;

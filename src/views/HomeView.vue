@@ -9,7 +9,13 @@
     <shoppingOffers /> 
     <ArrivedSoon />
     <SectionDives />
+    <bannerCont />
+    <productsCont />
+    <review />
+    <blog />
+    <brand />
     <FooterSide />
+    
 
   </div>
 </template>
@@ -24,14 +30,15 @@ import bannerContainer from '@/components/Home/bannerContainer.vue'
 import shoppingCategories from '@/components/Home/ShoppingCategoris.vue'
 import ArrivedSoon from '@/components/Home/ArrivedSoon.vue'
 import SectionDives from '@/components/Home/SectionDives.vue'
-
-
 import shoppingOffers from '@/components/Home/OfferEndSoon.vue'
-
-
-
 import productsContainer from '@/components/Home/productsContainer.vue'
 import FooterSide from '@/components/FooterSide.vue'
+import bannerCont from '@/components/Home/bannerCont.vue'
+import productsCont from '@/components/Home/productsCont.vue'
+import review from '@/components/Home/review.vue'
+import blog from '@/components/Home/blog.vue'
+import brand from '@/components/Home/brandContainer.vue'
+
 
 
 export default {
@@ -47,6 +54,11 @@ export default {
     productsContainer,
     ArrivedSoon,
     SectionDives,
+    bannerCont,
+    productsCont,
+    review,
+    blog,
+    brand,
     FooterSide
 
   }

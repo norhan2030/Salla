@@ -1,29 +1,22 @@
 <template>
     <div class="container">
-       <!-- <div class="row tableheader">
-        <div class="col-md-2 coll ">تفاصيل المنتج</div>
-        <div class="col-md-2 coll">مميزات المنتج</div>
-        <div class="col-md-2 coll">تقيمات المنتج</div>
-       </div> -->
        <hr class="head">
        <div class="row content ">
             <div class="col-md-4 row7 ">
                 <div class=" row top">
-                    <p class="p1">4.5 من 5</p>
+                    <p class="p1" v-if="Itemm.star!=0">{{Itemm.star}} من 5</p>
                     
                         <label class="form-check-label ">
-                            <div class="small-ratings">
-                                <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                <i class="fa fa-star rating-color gray" ></i>
+                            <div class="small-ratings" v-if="Itemm.star!=0">
+                                <i class="fa fa-star rating-color" style="color:orange;" v-for="star in Itemm.star" :key="star.id"></i>
+                                
+                                <i class="fa fa-star rating-color gray" v-for="star in stargray" :key="star.id" ></i>
                                 
                             </div>
                             
                         </label> 
                     
-                    <p>60 تقييم على المنتج</p>
+                    <p>{{Items.length}} تقييم على المنتج</p>
                 </div>
                 <div class="row mid">
                     <p>أضف تعليقك</p>
@@ -42,101 +35,41 @@
                 <div class="col-md-4 text-left"> ترتيب حسب :  <span>الاحدث</span> <i class="fa-solid fa-chevron-down"></i></div>
 
             </div>
-            <div class="row comment">
+            <div class="row comment" v-for="Item in Items" :key="Item.id">
                 <div class="row">
                     <div class="col-md-2 imgg">
-                        <img src="../../assets/imags/man.png" alt="">
+                         <img 
+            v-bind:src="'../../images/user/' + Item.img +'.png' "  alt="">
+                        <!-- <img src="../../assets/imags/man.png" alt=""> -->
                     </div>
                     <div class="col-md-8">
                         <div class="nameRate">
-                            <p class="name">محمد خالد</p>
+                            <p class="name"> {{Item.name}}</p>
                             <label class="form-check-label ">
                                 <div class="small-ratings">
-                                    <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                    <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                    <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                    <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                    <i class="fa fa-star rating-color gray" ></i>
+                                    <i class="fa fa-star rating-color" style="color:orange;" v-for="star in Item.star" :key="star.id"></i>
+                                
+                                <i class="fa fa-star rating-color gray" v-for="star in (5-Item.star)" :key="star.id" ></i>
                                     
                                 </div>
                             </label> 
                         </div>
                     </div>
                     <div class="col-md-2 date">
-                        <span>13/10 /2020</span>
+                        <!-- <span>13/10 /2020</span> -->
+                       <span>  {{Item.created_at}}</span>
                     </div>
                 </div>
                 <div class="row conteent">
                     <div class="col-md-2"></div>
                     <div class="col-md-10">
-                        <p>استخدمنا سلة قبل أربع سنوات ثم غادرناها قبل أن يكون فيها خيارات ترقية مدفوعة، خسرنا مبالغ كبيرة جدا في عمل متجر وتعبنا جدا في التعامل مع المبرمجين . ثم عدنا لمنصة سلة ووجدنا تطورا هائلاً وعملا مميزاً</p>
+                        <p>{{Item.comment}}</p>
                     </div>
                 </div>
+                <hr>
             </div>
-            <hr>
-            <div class="row comment">
-                <div class="row">
-                    <div class="col-md-2 imgg">
-                        <img src="../../assets/imags/man.png" alt="">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="nameRate">
-                            <p class="name">محمد خالد</p>
-                            <label class="form-check-label ">
-                                <div class="small-ratings">
-                                    <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                    <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                    <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                    <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                    <i class="fa fa-star rating-color gray" ></i>
-                                    
-                                </div>
-                            </label> 
-                        </div>
-                    </div>
-                    <div class="col-md-2 date">
-                        <span>13/10 /2020</span>
-                    </div>
-                </div>
-                <div class="row conteent">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-10">
-                        <p>استخدمنا سلة قبل أربع سنوات ثم غادرناها قبل أن يكون فيها خيارات ترقية مدفوعة، خسرنا مبالغ كبيرة جدا في عمل متجر وتعبنا جدا في التعامل مع المبرمجين . ثم عدنا لمنصة سلة ووجدنا تطورا هائلاً وعملا مميزاً</p>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="row comment">
-                <div class="row">
-                    <div class="col-md-2 imgg">
-                        <img src="../../assets/imags/man.png" alt="">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="nameRate">
-                            <p class="name">محمد خالد</p>
-                            <label class="form-check-label ">
-                                <div class="small-ratings">
-                                    <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                    <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                    <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                    <i class="fa fa-star rating-color" style="color:orange;"></i>
-                                    <i class="fa fa-star rating-color gray" ></i>
-                                    
-                                </div>
-                            </label> 
-                        </div>
-                    </div>
-                    <div class="col-md-2 date">
-                        <span>13/10 /2020</span>
-                    </div>
-                </div>
-                <div class="row conteent">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-10">
-                        <p>استخدمنا سلة قبل أربع سنوات ثم غادرناها قبل أن يكون فيها خيارات ترقية مدفوعة، خسرنا مبالغ كبيرة جدا في عمل متجر وتعبنا جدا في التعامل مع المبرمجين . ثم عدنا لمنصة سلة ووجدنا تطورا هائلاً وعملا مميزاً</p>
-                    </div>
-                </div>
-            </div>
+            
+            
             <div class="row more">
                 <button>عرض المزيد</button>
             </div>
@@ -145,15 +78,50 @@
     </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
-    setup() {
-        
+    props: ['id'],
+    data(){
+        return{
+           
+            show:true,
+            count:0,
+            grayStar:0,
+            Items:[],
+            Itemm:{},
+            stargray:0,
+            // date:Item.created_at,
+            limit:10
+
+        }
     },
+    methods : {
+    // grayStar(){
+    //     this.grayStar=5-this.Item.star
+    // },
+    
+     
+    
+    },
+   mounted() {
+        axios.get('Pcomments/'+this.id).then((res) => {
+            this.Items = res.data.data;
+        })
+        axios.get('Products/'+this.id).then((res) => {
+            this.Itemm = res.data.data;
+            this.stargray=5-this.Itemm.star
+            // this.date=this.date.slice(0,this.limit)
+        })
+   },
+//    computed:{
+//     computedObj(){
+//         return this.limit ? this.date.slice(0,this.limit) : this.date
+//     },
+
 }
 </script>
-<style lang="sass" scoped>
 
-</style>
 <style scoped>
 .row11{
 border: 1px solid #E0E0E0;
@@ -239,28 +207,7 @@ button{
     margin-top: 0;
     margin-bottom: 15px;
 }
-/* .tableheader{
-    margin: 15px 0 0 0;
 
-}
-.tableheader .coll{
-    padding: 15px 0px 0 0px !important;
-    margin: 0 10px !important;
-    height: 56px;
-    text-align: center;
-    font-family: DIN Next LT Arabic;
-font-size: 16px;
-font-style: normal;
-font-weight: bold;
-line-height: normal;
-}
-.tableheader .coll:hover{
-    background-color: var(--primary) !important;
-    color: white;
-}
-.active:hover{
-    background-color: var(--primary);
-} */
 .head{
     margin-top: 0;
     margin-bottom: 0;
@@ -332,6 +279,11 @@ hr{
     color: var(--text-gray);
     border: 1px solid #E0E0E0;
 
+}
+img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
 }
 @media(max-width:991px) {
     button{

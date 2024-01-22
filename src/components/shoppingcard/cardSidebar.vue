@@ -275,6 +275,7 @@ export default {
 }
 </script>
 <style scoped>
+
 .sidebar{
     padding: 20px;
     background-color: #fff;
@@ -299,7 +300,7 @@ li span{
     
 }
 .form-check-label{
-    margin-left: 50px;
+    /* margin-left: 50px; */
 }
 .col-md-6 h3{
     text-align: right;
@@ -319,12 +320,21 @@ ul li{
        
         margin-right: -80px;
     }
+    .form-check-label{
+        margin-left: 20px !important;
+    }
 }
 
 @media(max-width:767px) {
+    .form-check-label{
+        margin-left: 0px !important;
+    }
     .sidebar{
-       
+       padding: 0;
        display: none;
+    }
+    ul li{
+        margin: 0 !important;
     }
     .adver{
         display: none;

@@ -16,41 +16,14 @@
           عرض المزيد <i class="fa-solid fa-angle-left"></i>
         </a>
       </div>
-      <div class="row categoeies">
-        <div class="col-md-1 imge ll">
-          <img src="../../assets/imags/category1.png" alt="" />
-          <p class="p3">سماعات اذن</p>
-          <p class="p4">150 منتج</p>
-        </div>
-        <div class="col-md-1 imge">
-          <img src="../../assets/imags/category1.png" alt="" />
-          <p class="p3">سماعات اذن</p>
-          <p class="p4">150 منتج</p>
-        </div>
-        <div class="col-md-1 imge pp">
-          <img src="../../assets/imags/category1.png" alt="" />
-          <p class="p3">سماعات اذن</p>
-          <p class="p4">150 منتج</p>
-        </div>
-        <div class="col-md-1 imge ii">
-          <img src="../../assets/imags/category1.png" alt="" />
-          <p class="p3">سماعات اذن</p>
-          <p class="p4">150 منتج</p>
-        </div>
-        <div class="col-md-1 imge im">
-          <img src="../../assets/imags/category1.png" alt="" />
-          <p class="p3">سماعات اذن</p>
-          <p class="p4">150 منتج</p>
-        </div>
-        <div class="col-md-1 imge im">
-          <img src="../../assets/imags/category1.png" alt="" />
-          <p class="p3">سماعات اذن</p>
-          <p class="p4">150 منتج</p>
-        </div>
-        <div class="col-md-1 imge im">
-          <img src="../../assets/imags/category1.png" alt="" />
-          <p class="p3">سماعات اذن</p>
-          <p class="p4">150 منتج</p>
+      <div class="row categoeies justify-content-center">
+        <div class="col-md-3 col-lg-2 col-sm-4  imge ll" 
+          v-for="cat in cats"
+          :key="cat.id">
+          <img 
+            v-bind:src="'./images/cats/' + cat.img +'.png' " class="image"  alt="">
+          <p class="p3 text-center">{{ cat.name }}</p>
+          <p class="p4 text-center">{{ cat.products}}  منتج</p>
         </div>
       </div>
     </div>
@@ -83,6 +56,7 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
   data: function () {
     return {
@@ -90,6 +64,28 @@ export default {
     };
   },
   name: "categories",
+  data() {
+    return {
+      cats: [],
+    };
+  },
+  async mounted() {
+    
+    await axios
+      .get(
+        "Categories" 
+      )
+      .then((res) => {
+        this.cats = res.data.data;
+        
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(error.response.data.errors);
+      });
+      
+  },
+  
 };
 </script>
 
@@ -124,30 +120,38 @@ export default {
   margin-right: 0;
 }
 .p3 {
-  margin-bottom: 0;
+  /* margin-bottom: 0;
   padding-bottom: 0;
   margin-right: 35px;
-  margin-top: 10px;
+  margin-top: 10px; */
   /* padding-right: 15px; */
-  position: absolute;
+  /* position: absolute;
+   */
+   padding: 20px 0 0 0;
   color: black;
   font-weight: bold;
 }
 .p4 {
-  margin-top: 30px;
+  margin-top: 10px;
   padding-top: 0;
-  margin-right: 35px;
-  position: absolute;
+  /* margin-right: 35px; */
+  /* position: absolute; */
 }
 .btn {
   border-color: var(--primary) !important;
   color: var(--primary) !important;
 }
-.imge {
+/* .imge {
   margin-right: 60px;
+} */
+.image{
+  width: 150px; 
+  height: 150px; 
+  border-radius: 50%;
+
 }
 .ll{
-    margin-right: 0 !;
+    margin-top:60px;
 }
 .imaging{
     width: auto;

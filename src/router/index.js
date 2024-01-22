@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import shoppingCard from"../views/ShoppingCard/shoppingCard.vue";
-// import AllProducts from"../views/ShoppingCard/AllProducts.vue";
+import Card from"../views/productDetails/Card.vue";
 import NoProducts from"../views/ShoppingCard/NoProducts.vue";
 import ProductDetails from "../views/productDetails/ProductDitails.vue"
 
@@ -25,23 +25,24 @@ const routes = [
     name: 'shoppingCard',
     component: shoppingCard
     
-  }
-  // ,{
-  //   path: '/AllProducts',
-  //   name: 'AllProducts',
-  //   component: AllProducts
-    
-  // }
-  ,{
+  },
+  {
     path: '/NoProducts',
     name: 'NoProducts',
     component: NoProducts
     
-  }
-  ,{
-    path: '/ProductDetails',
+  },
+  {
+    path: '/ProductDetails/:id/:catID',
     name: 'ProductDetails',
-    component: ProductDetails
+    component: ProductDetails ,
+    props: true
+    
+  },
+  {
+    path: '/Card',
+    name: 'Card',
+    component: Card
     
   }
 

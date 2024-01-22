@@ -6,16 +6,17 @@
                 <p class="p2">تسوق احدث المنتجات المميزةالمضافة جديد</p>
             </div>
             <div class="col-md-3 show">
-                <a href="#" class="btn active" role="button" data-bs-toggle="button" aria-pressed="true">  
-                    عرض الكل <i class="fa-solid fa-angle-left"></i>
-                </a>
+                <router-link  :to="{name:'shoppingCard' }"  class="btn active"> عرض الكل <i class="fa-solid fa-angle-left"></i></router-link> 
+                <!-- <a href="#"  role="button" data-bs-toggle="button" aria-pressed="true">  
+                   
+                </a> -->
         
             </div>
             <div class="row soon">
-                <div class="col-md-6 prod"> 
+                <div class="col-md-6 prod right"> 
                     <div class="post">
                         <div class="row">
-                            <div class="col-md-4 imgg" ><img src="../../assets/imags/Image.png" alt=""></div>
+                            <div class="col-md-4 imgg" ><img src="../../assets/imags/product/1.png" alt=""></div>
                             <div class="col-md-8 text-right" >
                                 <div class="cont">
                                     <span style="" class="type">{{type}}</span>
@@ -55,10 +56,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 prod">
+                <div class="col-md-6 prod left">
                     <div class="post">
                         <div class="row">
-                            <div class="col-md-4 imgg" ><img src="../../assets/imags/Image.png" alt=""></div>
+                            <div class="col-md-4 imgg" ><img src="../../assets/imags/product/3.png" alt=""></div>
                             <div class="col-md-8 text-right" >
                                 <div class="cont">
                                     <span style="" class="type">{{type}}</span>
@@ -122,6 +123,7 @@ export default {
 <style scoped>
 .soon{
     margin-top: 20px;
+    padding: 0 !important;
 }
 .content{
     /* padding: 70px 40px 70px 80px; */
@@ -206,12 +208,17 @@ export default {
 .btuun{
     margin-top:20px;
 }
-.bttn2{
 
-}
 .show{
     text-align: left;
     margin-left: 3rem m !important;
+}
+.left{
+    padding-left: 0 !important;
+}
+.right{
+    padding-right: 0 !important;
+
 }
 @media(max-width:991px) {
     .imgg{
@@ -241,14 +248,7 @@ export default {
         padding-right: 0;
         width: 20%;
     }
-    .soon{
-        padding: 0;
-    }
-    .prod{
-       
-   
-
-    }
+  
    
 
 }
@@ -259,11 +259,18 @@ export default {
     }
     .imgg img{
         width: 100%;
-        height: 100%;
+        padding-right: 0;
+        height: 300px !important;
     }
+    
     .imgg{
          width: 100%;
+        
          padding-right: 10px;
+    }
+    .left{
+        padding-right: 0;
+         padding-left: 10px !important;
     }
     .text-right{
         width: 100%;

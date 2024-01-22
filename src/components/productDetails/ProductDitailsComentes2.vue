@@ -1,111 +1,61 @@
 <template>
-    <div class="container">
-       <!-- <div class="row">
-        <div class="col-md-4 x">
-            <div class="row row7">
-                <div class="z">
-                    <img src="../../assets/imags/im1.png" alt="">
-                    <p class="p1">SAR ادفع ربع القيمة 11.77 .قسطه على 3 أشهر. بدون رسوم</p>
-                    <p class="p2">أعرف أكثر</p>
-                </div>
-            </div>
-            
-            
-        </div>
-        <div class="col-md-4 x me-2">
-            <div class="row row7">
-                <div>
-                    <img src="../../assets/imags/im2.png" alt="">
-                    <p class="p1">سنقسط الدفع لمشترياتك علي أربع أقساط بدون تكلفة</p>
-                    <p class="p2">أعرف أكثر</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 x me-2">
-            <div class="row row7">
-                <div>
-                    <img src="../../assets/imags/im3.png" alt="">
-                    <p class="p1">ادفع 586 ر.س فقط علي 3 دفعات بدون رسوم</p>
-                    <p class="p2">أعرف أكثر</p>
-                </div>
-            </div>
-        </div>
-
-       </div> -->
-       <!-- <div class="row tableheader">
-        <div class="col-md-2 coll ">تفاصيل المنتج</div>
-        <div class="col-md-2 coll">مميزات المنتج</div>
-        <div class="col-md-2 coll">تقيمات المنتج</div>
-       </div> -->
+    <div class="container">   
        <hr>
        <div class="row tablee">
         <div class="col-md-12">
             <table class="table table- table-striped">
-            <tr class="trfirst">
+            <tr class="trfirst whitegray">
                 <td class="table- first">العلامة التجارية</td>
-                <td class="table- second">آبل</td>
+                <td class="table- second">{{Item.brand}}</td>
                 <td class="table-"></td>
-                <td class="table-"></td>
-                
-                
-                
+                <td class="table-"></td>  
             </tr>
-            
-            <tr>
+            <tr class="blackgray">
                 <td class="table- first">اللون</td>
-                <td class="table- second">رصاصي</td>
+                <td class="table- second">{{Item.color}} </td>
                 <td class="table-"></td>
-                <td class="table-"></td>
-                
-                
+                <td class="table-"></td> 
             </tr>
-            <tr>
+            <tr class="whitegray">
                 <td class="table- first">تقنية الاتصال</td>
-                <td class="table- second">Wireless</td>
-                <td class="table-"></td>
-                <td class="table-"></td>
-                
-                
-                
-            </tr>
-            <tr>
+                <td class="table- second" v-if="Item.wire == 2">Wireless</td>
+                <td class="table- second" v-if="Item.wire == 1">Wire</td>
+                <td class="table-"></td>   
+                <td class="table-"></td> 
+
+            </tr >
+            <tr class="blackgray">
                 <td class="table- first">اسم الطراز</td>
-                <td class="table- second">MWP22ZP/A</td>
+                <td class="table- second">{{Item.model}}</td>
                 <td class="table-"></td>
-                <td class="table-"></td>
-                
-                
+                <td class="table-"></td>   
             </tr>
-            <tr>
+            <tr class="whitegray">
                 <td class="table- first">الابعاد</td>
-                <td class="table- second">160.8×78.1×7.7 ملم جرام</td>
+                <td class="table- second">{{Item.dimn}}</td>
                 <td class="table-"></td>
-                <td class="table-"></td>
-                
-                
+                <td class="table-"></td>  
             </tr>
-            <tr>
+            <tr class="blackgray">
                 <td class="table- first">الشريحة</td>
-                <td class="table- second">يدعم الهاتف شريحتين</td>
-                <td class="table- "></td>
+                <td class="table- second" v-if="Item.sim == 1">يدعم الهاتف شريحتين</td>
+                <td class="table- second" v-if="Item.sim == 2">يدعم الهاتف ِشريحة</td>
+                <td class="table-"></td>
                 <td class="table-"></td>
 
+
             </tr>
-            <tr>
+            <tr class="whitegray">
                 <td class="table- first">المادة</td>
-                <td class="table- second">الزجاج</td>
+                <td class="table- second">{{Item.metal}}</td>
                 <td class="table-"></td>
-                <td class="table-"></td>
-                
-                
+                <td class="table-"></td>   
             </tr>
-            <tr>
+            <tr class="blackgray">
                 <td class="table- first">الوزن</td>
-                <td class="table- second">0.45 أوقية</td>
+                <td class="table- second">{{Item.weight}} أوقية</td>
                 <td class="table-"></td>
-                <td class="table-"></td>
-                
-                
+                <td class="table-"></td>  
             </tr>
            
         </table>
@@ -114,73 +64,61 @@
     </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
-    setup() {
-        
+    props: ['id'],
+    data(){
+        return{
+            Item:{}
+
+        }
     },
+    methods : {
+    
+    
+     
+    
+    },
+   mounted() {
+        axios.get('Products/'+this.id).then((res) => {
+            this.Item = res.data.data;
+        })
+        
+   },
+// setup(props) {
+//     axios.get("Products/+1").then((res) => { 
+//             this.Item = res.data.data; 
+//             console.log(axios.Item)
+//         })
+//   },
 }
 </script>
 <style scoped>
-/* .row7{
-     border: 1px solid #E0E0E0;
-    padding: 15px 15px 0 0;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-.row7 img{
-    width: 85px;
-    height: 32px;
-}
-.row7 p{
-    color: #757575;
- padding: 0;
-    margin-top: 0;
-    margin-bottom: 5px;
-    font-family: DIN Next LT Arabic;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-}
-.p1{
-    margin-top: 20px !important;
-}
-.p2{
-    color: var(--primary) !important;
-}
-.x{
-    width: 32.5%;
-}
-.z{
-    padding: 0;
-} */
-/* .tableheader{
-    margin: 15px 0 0 0;
 
+.whitegray{
+   
+    background-color:#F8F8F8 !important;
+    /* background-color: white; */
 }
-.tableheader .coll{
-    padding: 15px 0px 0 0px !important;
-    margin: 0 10px !important;
-    height: 56px;
-    text-align: center;
-    font-family: DIN Next LT Arabic;
-font-size: 16px;
-font-style: normal;
-font-weight: bold;
-line-height: normal;
+.blackgray{
+    /* background-color:#F8F8F8 !important; */
+    
+    background-color: #d6d5d5;
 }
-.tableheader .coll:hover{
-    background-color: var(--primary) !important;
-    color: white;
+.whitegray td{
+  padding: 10px 15px !important;
 }
-.active:hover{
-    background-color: var(--primary);
-} */
+
+.blackgray td{
+     padding: 10px 15px !important;
+}
 hr{
     margin-top: 0;
     border: 1px solid var(--primary);
 }
 .first{
+    font-weight: bold;
 padding-left: 0;
 margin-right: 0;
 }
@@ -188,15 +126,11 @@ margin-right: 0;
     padding-right: 0;
     margin-right: 0;
 }
-tr.trfirst{
-background-color: white !important;
-
-}
 tr td{
     font-family: DIN Next LT Arabic;
 font-size: 16px;
 font-style: normal;
-font-weight: 400;
+font-weight: 400px;
 line-height: 25px; 
 }
 .tablee{

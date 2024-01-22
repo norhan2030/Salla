@@ -3,7 +3,7 @@
     <Header />
   </div>
     <div>
-        <ProductDetailsComents/>
+        <ProductDetailsComents :id="id"/>
         <div class="container">
           <div class="row tableheader">
         <div class="col-md-2 coll " @click="show='details'" :class="{ active: show==='details'}">تفاصيل المنتج</div>
@@ -12,20 +12,18 @@
        </div>
         </div>
         <div v-if="show==='features'">
-          <ProductDetailsComents2 />
+          <ProductDetailsComents2 :id="id" />
         </div>
-        <div v-if="show==='Reviews'">
-          <ProductDetailsComents3 />
+        <div v-if="show==='Reviews'" >
+          <ProductDetailsComents3 :id="id" />
         </div>
         <div v-if="show==='details'">
-          <ProductDetailsComents4/>
+          <ProductDetailsComents4 :id="id"/>
         </div>
-        <productsContainer />
+        <productsContainer :id="id" :catID="catID"/>
         
         <FooterSide/>
     </div>
-  
-  
 </template>
 <script>
 import Header from '@/components/header/header.vue'
@@ -33,17 +31,17 @@ import ProductDetailsComents from '@/components/productDetails/ProductDitailsCom
 import ProductDetailsComents2 from '@/components/productDetails/ProductDitailsComentes2.vue'
 import ProductDetailsComents3 from '@/components/productDetails/CommentsPart.vue'
 import ProductDetailsComents4 from '@/components/productDetails/DetailsProducts.vue'
-
-import productsContainer from '@/components/Home/productsContainer.vue'
+import productsContainer from '@/components/productDetails/LikeProduct.vue'
 import FooterSide from "@/components/FooterSide.vue";
 
-
 export default {
+   props: ['id','catID'],
   data: function () {
     return {
      show:"features"
     };
   },
+
   name: "ProductDetails",
   components: {
   

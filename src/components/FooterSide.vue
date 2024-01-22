@@ -53,30 +53,30 @@
       </div>
       <div class="col-md-2 ed2">
           <p class="p11">حسابي</p>
-          <p class="ppp pp">>> حسابي</p>
-          <p class="ppp pp order">>> طلباتي</p>
-          <p class="ppp pp">>> سلة المشتريات</p>
-          <p class="ppp pp">>> المفضلة</p>
+          <p class="ppp pp"> <i class="fa fa-chevron-left"></i> <i class="fa fa-chevron-left"></i>  حسابي</p>
+          <p class="ppp pp order"> <i class="fa fa-chevron-left"></i> <i class="fa fa-chevron-left"></i>  طلباتي</p>
+          <p class="ppp pp"> <i class="fa fa-chevron-left"></i> <i class="fa fa-chevron-left"></i>  سلة المشتريات</p>
+          <p class="ppp pp"> <i class="fa fa-chevron-left"></i> <i class="fa fa-chevron-left"></i>  المفضلة</p>
       </div>
       <div class="col-md-2 ed3">
           <p class="p11">روابط مهمة</p>
-          <p class="ppp pp">>> من نحن</p>
-          <p class="ppp pp">>> سياسة الخصوصية</p>
-          <p class="ppp pp">>> الشروط و الاحكام</p>
-          <p class="ppp pp">>> الدعم الفني</p>
+          <p class="ppp pp"> <i class="fa fa-chevron-left"></i> <i class="fa fa-chevron-left"></i>  من نحن</p>
+          <p class="ppp pp"> <i class="fa fa-chevron-left"></i> <i class="fa fa-chevron-left"></i>  سياسة الخصوصية</p>
+          <p class="ppp pp"> <i class="fa fa-chevron-left"></i> <i class="fa fa-chevron-left"></i>  الشروط و الاحكام</p>
+          <p class="ppp pp"> <i class="fa fa-chevron-left"></i> <i class="fa fa-chevron-left"></i>  الدعم الفني</p>
       </div>
       <div class="col-md-2 ed4">
           <p class="p11">تراصل معنا</p>
           <div>
-          <p class="ppp lll">>> الواتساب :</p>
+          <p class="ppp lll"> <i class="fa fa-chevron-left"></i> <i class="fa fa-chevron-left"></i>  الواتساب :</p>
           <span class="pp me-3">009612345678932</span>
           </div>
           <div>
-          <p class="ppp lll">>> الموبايل :</p>
+          <p class="ppp lll"> <i class="fa fa-chevron-left"></i> <i class="fa fa-chevron-left"></i>  الموبايل :</p>
           <span class="pp me-3">009612345678932</span>
           </div>
           <div>
-          <p class="ppp lll">>> البريد :</p>
+          <p class="ppp lll"> <i class="fa fa-chevron-left"></i> <i class="fa fa-chevron-left"></i>  البريد :</p>
           <span class="pp me-3">salla.com</span>
           </div>
       </div>
@@ -225,6 +225,13 @@ export default {
 .containerr{
   background-color: #f8f8f8 !important;
 }
+
+i{
+  line-height: -5px;
+  font-size: 14px;
+  margin: 0 -10px 0 0;
+}
+
 @media (max-width: 991px) {
   .contain {
     padding-left: 0 !important;

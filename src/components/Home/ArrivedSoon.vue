@@ -33,15 +33,23 @@
         :modules="modules"
         class="mySwiper"
     >
-            <swiper-slide>
-                <dir>
-                    <img src="../../assets/imags/car1.png" alt="">
-                </dir>
+            <swiper-slide 
+            v-for="product in displayItems"
+            :key="product.id"
+            >
+            <router-link :to="{ name: 'ProductDetails', params: { id: product.id,catID: product.cat.id } }" class="img d-block">
+                <img 
+                v-bind:src="'./images/product/' + product.img +'.png' " class="position" alt="">
+               
+                <span class="new text-white" v-if="popular.some(prod => prod.id === product.id)"> جديد </span>
+                <span class=" text-white" v-else>  </span>
+            </router-link >
+
                 <div class="row">
-                    <p class="p1">سماعات</p>
-                    <p class="p2">سماعات ايربودز 3 سيم اوريجينال</p>
-                    <p class="p3">سماعة ذات صوت عالي الدقة</p>
-                    <label for="">250.00 رس</label>
+                    <p class="p1">{{product.cat.name}}</p>
+                    <p class="p2">{{ product.name }}</p>
+                    <p class="p3">{{ product.decs}}</p>
+                    <label for="">{{product.price}}.00 رس</label>
                 </div>
                 <div class="row btnn">
                     <div class="col-md-9">
@@ -52,99 +60,90 @@
                     </div>
                 </div>
             </swiper-slide>
-                <swiper-slide> <dir>
-                    <img src="../../assets/imags/car2.png" alt="">
-                </dir>
-                <div class="row">
-                    <p class="p1">سماعات</p>
-                    <p class="p2">سماعات ايربودز 3 سيم اوريجينال</p>
-                    <p class="p3">سماعة ذات صوت عالي الدقة</p>
-                    <label for="">250.00 رس</label>
-                </div>
-                <div class="row btnn">
-                    <div class="col-md-9">
-                        <button><i class="fa-solid fa-cart-shopping"></i> اضف للسلة</button>
-                    </div>
-                    <div class="col-md-3">
-                        <button><i class="fa-regular fa-heart"></i></button>
-                    </div>
-                </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <dir>
-                    <img src="../../assets/imags/car1.png" alt="">
-                </dir>
-                <div class="row">
-                    <p class="p1">سماعات</p>
-                    <p class="p2">سماعات ايربودز 3 سيم اوريجينال</p>
-                    <p class="p3">سماعة ذات صوت عالي الدقة</p>
-                    <label for="">250.00 رس</label>
-                </div>
-                <div class="row btnn">
-                    <div class="col-md-9">
-                        <button><i class="fa-solid fa-cart-shopping"></i> اضف للسلة</button>
-                    </div>
-                    <div class="col-md-3">
-                        <button><i class="fa-regular fa-heart"></i></button>
-                    </div>
-                </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <dir>
-                    <img src="../../assets/imags/car2.png" alt="">
-                </dir>
-                <div class="row">
-                    <p class="p1">سماعات</p>
-                    <p class="p2">سماعات ايربودز 3 سيم اوريجينال</p>
-                    <p class="p3">سماعة ذات صوت عالي الدقة</p>
-                    <label for="">250.00 رس</label>
-                </div>
-                <div class="row btnn">
-                    <div class="col-md-9">
-                        <button><i class="fa-solid fa-cart-shopping"></i> اضف للسلة</button>
-                    </div>
-                    <div class="col-md-3">
-                        <button><i class="fa-regular fa-heart"></i></button>
-                    </div>
-                </div>
-                </swiper-slide>
-                <swiper-slide>Slide 5</swiper-slide>
-                <swiper-slide>Slide 6</swiper-slide>
-                <swiper-slide>Slide 7</swiper-slide>
-                <swiper-slide>Slide 8</swiper-slide>
-                <swiper-slide>Slide 9</swiper-slide>
+
+            
             </swiper>
         </div>
     </div>
  </div>
 </template>
 <script>
-  // Import Swiper Vue.js components
-  import { Swiper, SwiperSlide } from 'swiper/vue';
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from 'swiper/vue';
 
-  // Import Swiper styles
-  import 'swiper/css';
+// Import Swiper styles
+import 'swiper/css';
 
-  import 'swiper/css/pagination';
+import 'swiper/css/pagination';
 
- 
 
-  // import required modules
-  import { Pagination } from 'swiper/modules';
 
-  export default {
-    components: {
-      Swiper,
-      SwiperSlide,
-    },
-    setup() {
-      return {
-        modules: [Pagination],
-      };
-    },
-  };
+// import required modules
+import { Pagination } from 'swiper/modules';
+import axios from 'axios';
+
+export default {
+components: {
+    Swiper,
+    SwiperSlide,  
+},
+data() {
+    return {
+        displayItems: [],
+         popular:[],
+      
+    };
+  },
+async mounted() {
+    
+
+    await axios
+    .get(
+    "newest/" 
+    )
+    .then((res) => {
+    this.displayItems = res.data.data;
+    })
+    .catch((error) => {
+    console.log(error);
+    console.log(error.response.data.errors);
+    });
+    axios.get(
+          "newest/" 
+        )
+        .then((res) => {
+          this.popular = res.data.data;
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log(error.response.data.errors);
+        });
+        
+        
+},
+setup() {
+    return {
+    modules: [Pagination],
+    };
+},
+};
 </script>
 <style scoped>
+.position{
+    position: relative;
+}
+
+.new{
+    position: absolute;
+     top: 10px;
+    left:20px;
+    color: var(---Dark-Color---White, #FFF);
+    font-weight: 400;
+    line-height: normal;
+    font-size: 16px;
+    padding: 5px 15px;
+    background-color: var(--Primary-Color---Primary);
+}
 .headee{
     padding-top: 30px !important;
 }
@@ -247,5 +246,8 @@ button:hover{
     .col-md-3 {
         width: 25%;
     }
+}
+.swiper-pagination-bullet{
+  color: var(--primary)  !important;
 }
 </style>

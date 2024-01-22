@@ -2,7 +2,8 @@
   <div class="down">
     <div class="containder">
       <ul>
-        <li> <a href="http://#"> كل المنتجات  <i class="fa fa-chevron-down"></i> </a></li>
+        <li><router-link  :to="{name:'shoppingCard' }"  class="router">كل المنتجات  <i class="fa fa-chevron-down"></i></router-link></li>
+        <!-- <li> <a href="http://#">  </a></li> -->
         <li> <a href="http://#"> الكترونيات  <i class="fa fa-chevron-down"></i> </a></li>
         <li> <a href="http://#"> موبيلات  <i class="fa fa-chevron-down"></i> </a></li>
         <li> <a href="http://#"> كاميرات مراقبة  <i class="fa fa-chevron-down"></i> </a></li>
